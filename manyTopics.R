@@ -13,5 +13,5 @@ storage <- manyTopics(docs, vocab, data = meta,
                    verbose=T)
 
 #saving the outputs
-saveRDS(storage, "hyak/storage.rds")
+saveRDS(storage, "storage.rds")
 
