@@ -1,16 +1,6 @@
 library(stm)
-library(readr)
 
-
-sermons = read_csv("../sermons_final.csv")
-#sermons = read_csv("sermons_final.csv")
-
-#preprocessing the text
-processed <- textProcessor(sermons$translated, metadata=sermons, 
-                           language = "en", stem = T) #citation 
-
-out <- prepDocuments(processed$documents, processed$vocab, processed$meta,
-                     upper.thresh = 100, lower.thresh = 20)
+out <- readRDS(file = "out.rds")
 docs <- out$documents
 vocab <- out$vocab
 meta  <- out$meta
@@ -18,8 +8,8 @@ meta  <- out$meta
 #finding the optimal number of K
 storage <- searchK(docs, vocab, data = meta,
                    K = 3:50,  
-                   prevalence = ~turkish + kurdish + price + location + ramadan + sacrifice,  
-                   seed = 57, cores=8,
+                   pprevalence = ~ramadan+sacrifice+budget_share+republic+kurdish+civilians+turkish+location+unemployment,
+                   seed = 57, cores=4,
                    verbose=T)
 
 #saving the outputs
@@ -28,5 +18,5 @@ plot(storage)
 plot(storage$results$K, storage$results$exclus, ylab = 'Exclusivity', xlab = 'Topics')
 plot(storage$results$K, storage$results$semcoh, ylab = 'Semantic Coherence', xlab = 'Topics')
 dev.off()
-save(storage, file = "storage.RData")
+saveRDS(storage, "storage.rds")
 
