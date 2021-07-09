@@ -15,8 +15,8 @@ many_models <-
                                           K = ., 
                                           prevalence = ~holy_days+budget_share+republic+kurdish+civilians+turkish+location+unemployment,  
                                           seed = 57, 
-                                          verbose=T)))
-
+                                          verbose=T,
+                                          .options = furrr_options(seed = TRUE))))
 #saving the outputs
 saveRDS(many_models, "manyModels.rds")
 
