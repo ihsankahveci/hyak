@@ -13,7 +13,7 @@ many_models <-
   tibble(K = 3:50) %>%
   mutate(topic_model = future_map(K, ~stm(docs, vocab, data = meta,
                                           K = ., 
-                                          prevalence = ~ramadan+sacrifice+budget_share+republic+kurdish+civilians+turkish+location+unemployment,  
+                                          prevalence = ~holy_days+budget_share+republic+kurdish+civilians+turkish+location+unemployment,  
                                           seed = 57, 
                                           verbose=T)))
 
