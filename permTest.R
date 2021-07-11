@@ -22,4 +22,7 @@ perm_test = permutationTest(~holy_days+budget_share+turkish+location+unemploymen
 pdf("perm_plot.pdf")
 plot(perm_test, topic = 10)
 dev.off()
+saveRDS(stm_perm, "stm_perm.rds")
 saveRDS(perm_test, "perm_test.rds")
+
+
