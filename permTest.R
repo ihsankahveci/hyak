@@ -9,7 +9,7 @@ meta  <- mutate(out$meta, turkish = ifelse(as.numeric(turkish) > 2, 1, 0))
 stm_perm = stm(docs, vocab, data = meta,
                K = 22,  
                prevalence = ~holy_days+budget_share+turkish+location+unemployment,
-               seed = 11,
+               seed = 57,
                verbose = F)
 
 perm_test = permutationTest(~holy_days+budget_share+turkish+location+unemployment, 
