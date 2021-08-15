@@ -4,6 +4,7 @@ library(furrr)
 library(progressr)
 plan(multicore)
 
+print("reading data")
 out <- readRDS(file = "out.rds")
 docs <- out$documents
 vocab <- out$vocab
@@ -20,6 +21,7 @@ stm_fn <- function(k, p, docs, vocab, meta){
   return(out)
 }
 
+print("running many models")
 with_progress({
   p <- progressor(steps = nrow(raw_df))
 #finding the optimal number of K
@@ -30,5 +32,6 @@ with_progress({
 })
 
 #saving the outputs
+print("saving the output")
 saveRDS(many_models, "manyModels.rds")
 
