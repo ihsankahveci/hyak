@@ -1,6 +1,7 @@
 library(tidyverse)
 library(stm)
 library(furrr)
+library(future)
 library(progressr)
 plan(multicore)
 
