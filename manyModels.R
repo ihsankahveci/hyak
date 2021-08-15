@@ -22,7 +22,7 @@ stm_fn <- function(k, p, docs, vocab, meta){
   return(out)
 }
 
-print("running many models")
+print("running many models, don't forget export R_PROGRESSR_ENABLE=TRUE")
 with_progress({
   p <- progressor(steps = nrow(raw_df))
 #finding the optimal number of K
