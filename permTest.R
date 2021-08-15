@@ -1,13 +1,15 @@
 library(dplyr)
 library(stm)
 
+#setwd(system("pwd", intern = TRUE))
+
 out <- readRDS(file = "out.rds")
 docs <- out$documents
 vocab <- out$vocab
-meta  <- mutate(out$meta, turkish = ifelse(as.numeric(turkish) > 2, 1, 0))
+meta  <- mutate(out$meta, turkish = ifelse(turkish == "high", 1, 0))
 
 stm_perm = stm(docs, vocab, data = meta,
-               K = 22,  
+               K = 21,  
                prevalence = ~holy_days+budget_share+turkish+location+unemployment,
                seed = 57,
                verbose = F)
